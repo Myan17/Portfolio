@@ -1,58 +1,46 @@
-# ML Module - ICU Capacity Forecasting
+# Myan Gupta — Portfolio
 
-This folder contains the **machine learning layer** for the ICU Capacity Forecasting project.
+Personal portfolio site for **Myan Gupta** — backend, distributed systems, AI/ML infrastructure, and quant. CS @ University of Minnesota.
 
-## Current forecasting strategy
+**Live:** https://myan17.github.io/Portfolio/
 
-The first version of the ML stack uses:
+## About
 
-1. **Baseline forecast** for a sanity-check benchmark
-2. **SARIMA** for interpretable classical time-series modeling
-3. **Prophet** for trend + seasonality modeling
-4. **Risk labeling** on top of predictions for Green / Yellow / Red alerts
+A single-page, zero-build portfolio with interactive, in-browser demos — no video walkthroughs. Highlights include:
 
-## Why this approach
+- **Quant Lab** — live Black-Scholes / Monte Carlo option pricer, SMA backtest with drawdown, and a 2-asset efficient frontier.
+- **Consistent-hash ring** — interactive KV-store hash ring showing key remapping as nodes join and leave.
+- **ICU latency demo** — visualizes the 360ms → 14ms P95 optimization.
+- Featured works, full project catalogue, events, resume, and a Cal.com booking embed.
 
-We are intentionally starting with simple, interpretable models before moving to more complex methods like LSTMs or hybrid models. That gives us:
+## Tech
 
-- easier debugging
-- cleaner demos
-- faster iteration
-- stronger explainability for project reviews
+Plain **HTML · CSS · Canvas · SVG · GSAP** — no framework, no build step. Deployed via **GitHub Pages**.
 
-## Folder overview
+## Structure
 
-- `preprocessing/` - load, validate, clean, and resample data
-- `features/` - optional time-based feature generation
-- `models/` - forecast model wrappers
-- `pipelines/` - training and inference orchestration
-- `utils/` - metrics, risk labeling, serialization helpers
-- `artifacts/` - saved models and forecast outputs
-- `data/` - raw and processed files used by the ML module
-
-## Expected input schema
-
-At minimum, the model layer expects:
-
-- `hospital_id`
-- `timestamp`
-- `icu_occupied`
-
-Optional but recommended:
-
-- `icu_capacity`
-
-## Example commands
-
-```bash
-python -m ml.train --input ml/data/raw/hospital_a.csv --model baseline
-python -m ml.train --input ml/data/raw/hospital_a.csv --model sarima
-python -m ml.predict --input ml/data/raw/hospital_a.csv --model baseline --hospital-id HOSPITAL_A
-python -m ml.evaluate --input ml/data/raw/hospital_a.csv
+```
+index.html      # the entire site (markup, styles, and scripts)
+resume.pdf      # downloadable / embedded resume
+images/         # event photos (Origin House, QuackHacks, BETA Accelerator)
+.github/        # GitHub Pages deploy workflow
 ```
 
-## Notes
+## Local development
 
-- The code is written to be readable first.
-- Optional dependencies like `prophet` and `statsmodels` are imported lazily.
-- The first implementation keeps training and inference separate so the backend can later load existing forecasts without retraining.
+It's a static file — just open `index.html` in a browser, or serve the folder:
+
+```bash
+python3 -m http.server 8000
+# then visit http://localhost:8000
+```
+
+## Deployment
+
+Pushing to `main` triggers the GitHub Pages workflow in `.github/workflows/`, which publishes the repository root.
+
+## Contact
+
+- Email — gmyang03@gmail.com
+- LinkedIn — https://www.linkedin.com/in/myangupta
+- Book a call — https://cal.com/myan-gupta-7s6z87/15min

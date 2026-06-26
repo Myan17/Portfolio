@@ -323,7 +323,9 @@ input[type=range]::-moz-range-thumb {
 .event-img { position: relative; background: linear-gradient(135deg, var(--surface-2), var(--surface-3)); display: grid; place-items: center; overflow: hidden; }
 .event-img.placeholder::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(45deg, rgba(212,255,58,0.04) 25%, transparent 25%), linear-gradient(-45deg, rgba(212,255,58,0.04) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(212,255,58,0.04) 75%), linear-gradient(-45deg, transparent 75%, rgba(212,255,58,0.04) 75%); background-size: 24px 24px; background-position: 0 0, 0 12px, 12px -12px, -12px 0; }
 .event-img .img-glyph { position: relative; z-index: 1; font-family: var(--serif); font-style: italic; font-size: 64px; color: rgba(212,255,58,0.4); }
-.event-img .placeholder-label { position: absolute; bottom: 12px; right: 12px; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.18em; padding: 5px 10px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 999px; z-index: 2; text-transform: uppercase; }
+.event-img .event-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; transition: transform 0.4s var(--ease); }
+.event:hover .event-img .event-photo { transform: scale(1.04); }
+.event-img .placeholder-label { position: absolute; bottom: 12px; right: 12px; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.18em; padding: 5px 10px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 999px; z-index: 3; text-transform: uppercase; }
 .event-body { padding: 24px; display: flex; flex-direction: column; gap: 10px; }
 .event-body .ebadge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--acid); text-transform: uppercase; }
 .event-body h4 { font-family: var(--serif); font-size: 30px; font-weight: 400; margin: 0; line-height: 1.1; }
@@ -507,7 +509,7 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
     <div class="about-body reveal">
       <p>I'm a CS student at the <strong>University of Minnesota</strong> (B.S. May '27, 3.8 GPA) working at the edge where infrastructure meets AI — building things that move actual numbers and survive scrutiny in a postmortem.</p>
       <p class="about-pull">"I gravitate toward problems with hard latency targets, real concurrency, and metrics you can defend."</p>
-      <p>Recent work spans <strong>PriorAuthAI</strong> (Top-9 at Origin House O1, autonomous multi-agent prior auth for 200K underserved practices), <strong>InclusiveAlert</strong> (full-stack accessibility platform on Vercel + Railway with PostGIS), an <strong>ICU forecasting platform</strong> that cut P95 from 360ms to 14ms, a Go consistent-hash KV store benchmarked at sub-500ms P95 under 60K ops, and a suite of <strong>quant tools</strong> — Sharpe optimizer, rolling correlation/covariance, portfolio analyzer.</p>
+      <p>Recent work spans <strong>PriorAuthAI</strong> (Top 9 at Origin House O1, autonomous multi-agent prior auth for 200K underserved practices), <strong>InclusiveAlert</strong> (full-stack accessibility platform on Vercel + Railway with PostGIS), an <strong>ICU forecasting platform</strong> that cut P95 from 360ms to 14ms, a Go consistent-hash KV store benchmarked at sub-500ms P95 under 60K ops, and a suite of <strong>quant tools</strong> — Sharpe optimizer, rolling correlation/covariance, portfolio analyzer.</p>
       <p>As a <strong>Research Assistant</strong>, I build trace-analysis workflows for multi-agent LLM systems — categorizing 1,600+ annotated traces across 7 frameworks and 14 failure modes, with LLM-as-a-judge validation tracking accuracy, agreement, latency, throughput, and failure distribution. As a <strong>Teaching Assistant</strong>, I've mentored 100+ students in systems programming.</p>
     </div>
     <div class="about-side reveal">
@@ -532,7 +534,7 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
   <div class="stats reveal">
     <div class="stat"><div class="num"><span data-count="3.8">0.0</span></div><div class="label">GPA · Dean's List</div></div>
     <div class="stat"><div class="num"><span data-count="1600">0</span><em>+</em></div><div class="label">Traces analyzed</div></div>
-    <div class="stat"><div class="num"><span data-count="15">0</span></div><div class="label">GitHub repos</div></div>
+    <div class="stat"><div class="num"><span data-count="16">0</span></div><div class="label">GitHub repos</div></div>
     <div class="stat"><div class="num"><span data-count="26">0</span><em>×</em></div><div class="label">P95 speedup</div></div>
   </div>
 </section>
@@ -550,6 +552,7 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
 
   <div class="lab-tabs reveal">
     <button class="lab-tab active" data-cursor="hover" data-tab="quant">// Quant Lab</button>
+    <button class="lab-tab" data-cursor="hover" data-tab="kernel">// Kernel Factory</button>
     <button class="lab-tab" data-cursor="hover" data-tab="ring">// Consistent-hash ring</button>
     <button class="lab-tab" data-cursor="hover" data-tab="latency">// 360ms → 14ms latency</button>
   </div>
@@ -652,20 +655,36 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
       <div style="display:flex; justify-content:space-between; font-family:var(--mono); font-size:10px; color:var(--muted); margin-top:6px;"><span>BEFORE</span><span>AFTER</span></div>
     </div>
   </div>
+
+  <div class="demo" data-demo="kernel">
+    <div class="demo-canvas" style="padding:0; overflow:hidden;">
+      <iframe src="https://myan17.github.io/Kernel-Factory/#demo" title="Kernel Factory — live demo" loading="lazy" style="width:100%; height:100%; min-height:540px; border:0; background:var(--bg-2); display:block;"></iframe>
+    </div>
+    <div class="demo-side">
+      <div class="tag">// flagship · JAX + Pallas + TPU v5e</div>
+      <h3>Kernel Factory, <em>running live</em>.</h3>
+      <p class="desc">A <strong>deterministic, zero-hallucination pipeline</strong> that computes numerically-verified JAX/Pallas kernels for Google TPUs — tile sizes solved from VMEM math, templates retrieved and assembled, every kernel checked against a JAX baseline. The interactive demo runs right here in your browser.</p>
+      <p class="desc">Beats XLA on <strong>FFN-down (+5%)</strong> and <strong>RMSNorm (+3%)</strong> on <strong>Cloud TPU v5e</strong> · <strong>92 unit tests</strong> passing. Built at QuackHacks 2026.</p>
+      <div class="demo-controls">
+        <a class="btn btn-primary magnetic" data-cursor="hover" href="https://myan17.github.io/Kernel-Factory/#demo" target="_blank" rel="noopener">Open full demo <span class="arrow">↗</span></a>
+        <a class="btn magnetic" data-cursor="hover" href="https://github.com/Myan17/Kernel-Factory" target="_blank" rel="noopener">View source <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="works">
   <div class="sec-label">04 / Featured Works <span class="ref">— REF_004</span></div>
-  <h2 class="sec-title reveal">Five <em>headliners</em>.</h2>
-  <p class="sec-sub reveal">The projects I'm proudest of right now. Two are deployed full-stack, one's a hackathon Top-9, one's pure systems, one's an OpenEnv-compatible RL eval backend.</p>
+  <h2 class="sec-title reveal">Six <em>headliners</em>.</h2>
+  <p class="sec-sub reveal">The projects I'm proudest of right now. One computes verified TPU kernels on Google Cloud silicon, two are deployed full-stack, one's a hackathon Top 9, one's pure systems, one's an OpenEnv-compatible RL eval backend.</p>
   <div class="works-wrap" id="worksWrap"></div>
-  <div class="view-all"><a class="btn magnetic" data-cursor="hover" href="#projects">All 17 projects <span class="arrow">↓</span></a></div>
+  <div class="view-all"><a class="btn magnetic" data-cursor="hover" href="#projects">All 18 projects <span class="arrow">↓</span></a></div>
 </section>
 
 <section id="projects">
   <div class="sec-label">05 / Catalogue <span class="ref">— REF_005</span></div>
   <h2 class="sec-title reveal">Everything I've <em>built</em>.</h2>
-  <p class="sec-sub reveal">17 projects · 7 quant repos · 1 deployed accessibility platform · 1 hackathon flagship · 1 academic ML capstone · 1 live dice game. Hit a card to open the repo or demo.</p>
+  <p class="sec-sub reveal">18 projects · 1 verified TPU-kernel pipeline · 7 quant repos · 1 deployed accessibility platform · 1 hackathon flagship · 1 academic ML capstone · 1 live dice game. Hit a card to open the repo or demo.</p>
   <div class="proj-grid reveal" id="projGrid"></div>
 </section>
 
@@ -752,24 +771,24 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
 
 <section id="book">
   <div class="sec-label">10 / Book a Call <span class="ref">— REF_010</span></div>
-  <h2 class="sec-title reveal">Talk in <em>30 minutes</em>.</h2>
+  <h2 class="sec-title reveal">Talk in <em>15 minutes</em>.</h2>
   <div class="book-card reveal">
     <div class="book-info">
-      <div class="ebadge" style="font-family:var(--mono); font-size:10px; letter-spacing:0.22em; color:var(--acid); text-transform:uppercase;">// 30 MIN · GOOGLE MEET</div>
+      <div class="ebadge" style="font-family:var(--mono); font-size:10px; letter-spacing:0.22em; color:var(--acid); text-transform:uppercase;">// 15 MIN · GOOGLE MEET</div>
       <h3>Recruiter call · <em>intro</em></h3>
       <p>Pick a slot, get a Google Meet link in your inbox. I'll come prepared with the projects you want to dig into.</p>
       <div class="meta">
-        <div class="row"><div class="ic"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span><b style="color:var(--text)">30 minutes</b> · pick any slot</span></div>
+        <div class="row"><div class="ic"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span><b style="color:var(--text)">15 minutes</b> · pick any slot</span></div>
         <div class="row"><div class="ic"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><span>Google Meet · auto-generated</span></div>
         <div class="row"><div class="ic"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div><span>America/Los_Angeles · auto-detect</span></div>
       </div>
       <div class="actions" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
-        <a class="btn btn-primary magnetic" data-cursor="hover" href="https:///myan-gupta" target="_blank" rel="noopener">Open in Cal.com <span class="arrow">↗</span></a>
+        <a class="btn btn-primary magnetic" data-cursor="hover" href="https://cal.com/myan-gupta-7s6z87/15min" target="_blank" rel="noopener">Open in Cal.com <span class="arrow">↗</span></a>
         <a class="btn magnetic" data-cursor="hover" href="mailto:gmyang03@gmail.com">Email instead <span class="arrow">↗</span></a>
       </div>
     </div>
     <div class="book-frame">
-      <iframe src="https://cal.com/myan-gupta-7s6z87/15min" title="Book a call" allow="camera *; microphone *" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <iframe src="https://cal.com/myan-gupta-7s6z87/15min?theme=dark" title="Book a call" allow="camera *; microphone *" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
   </div>
 </section>
@@ -780,15 +799,14 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
   <p class="sub reveal">Open to <strong>Summer 2026 SWE internships and full-time roles</strong> in backend, distributed systems, AI infrastructure, or quant. Always down to chat.</p>
   <div class="contact-grid reveal">
     <a class="contact-card glow-card" data-cursor="hover" href="mailto:gmyang03@gmail.com"><div class="label">// EMAIL_CHANNEL</div><div class="val">gmyang03@gmail.com</div><div class="meta">PREFERRED · REPLIES &lt; 24H</div></a>
-    <a class="contact-card glow-card" data-cursor="hover" href="tel:+14259004417"><div class="label">// VOICE_CHANNEL</div><div class="val">(425) 900-4417</div><div class="meta">PT · WEEKDAYS</div></a>
-    <div class="contact-card glow-card" data-cursor="hover"><div class="label">// GEO_LOCATION</div><div class="val">Redmond, WA</div><div class="meta">47.6740° N · 122.1215° W</div></div>
+    <a class="contact-card glow-card" data-cursor="hover" href="https://www.linkedin.com/in/myangupta" target="_blank" rel="noopener"><div class="label">// SOCIAL_CHANNEL</div><div class="val">LinkedIn · in/myangupta</div><div class="meta">DMs OPEN</div></a>
+    <div class="contact-card glow-card" data-cursor="hover"><div class="label">// GEO_LOCATION</div><div class="val">Redmond, WA</div><div class="meta">PACIFIC TIME</div></div>
   </div>
   <div class="contact-actions">
     <div class="socials">
       <a class="s-btn" data-cursor="hover" href="mailto:gmyang03@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
       <a class="s-btn" data-cursor="hover" href="https://github.com/Myan17" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.07 3.29 9.36 7.86 10.88.58.11.79-.25.79-.55v-2.05c-3.2.69-3.87-1.37-3.87-1.37-.52-1.32-1.28-1.67-1.28-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.39.97.01 1.95.14 2.86.39 2.18-1.49 3.14-1.18 3.14-1.18.63 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.4-5.25 5.69.42.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.55C20.22 21.36 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg></a>
-      <a class="s-btn" data-cursor="hover" href="https://www.linkedin.com/in/myangupta/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67h-3.55V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.22 0z"/></svg></a>
-      <a class="s-btn" data-cursor="hover" href="tel:+14259004417" aria-label="Phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg></a>
+      <a class="s-btn" data-cursor="hover" href="https://www.linkedin.com/in/myangupta" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67h-3.55V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.22 0z"/></svg></a>
     </div>
     <a class="btn btn-primary magnetic" data-cursor="hover" href="#book">Book a call <span class="arrow">↗</span></a>
   </div>
@@ -803,7 +821,7 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
   </div>
   <div class="col"><h5>Navigate</h5><a href="#about">01 / About</a><a href="#stack">02 / Stack</a><a href="#lab">03 / Lab</a><a href="#works">04 / Works</a><a href="#projects">05 / Catalogue</a></div>
   <div class="col"><h5>More</h5><a href="#events">06 / Events</a><a href="#experience">07 / Experience</a><a href="#play">08 / Playable</a><a href="#resume">09 / Resume</a><a href="#book">10 / Book a Call</a></div>
-  <div class="col"><h5>Channels</h5><a href="mailto:gmyang03@gmail.com">EMAIL</a><a href="tel:+14259004417">PHONE</a><a href="https://github.com/Myan17" target="_blank" rel="noopener">GITHUB</a><a href="https://www.linkedin.com/in/myan-gupta" target="_blank" rel="noopener">LINKEDIN</a><div style="margin-top:12px; color: var(--acid);">[●] ACTIVE</div></div>
+  <div class="col"><h5>Channels</h5><a href="mailto:gmyang03@gmail.com">EMAIL</a><a href="https://github.com/Myan17" target="_blank" rel="noopener">GITHUB</a><a href="https://www.linkedin.com/in/myangupta" target="_blank" rel="noopener">LINKEDIN</a><div style="margin-top:12px; color: var(--acid);">[●] ACTIVE</div></div>
 </footer>
 
 <script>
@@ -817,31 +835,37 @@ const STACK = [
 ];
 
 const WORKS = [
-  { id:"REF_W01", date:"APR'26 — PRESENT", num:"01 / 05",
+  { id:"REF_W01", date:"MAY'26 — PRESENT", num:"01 / 06",
+    title:"Kernel Factory · <em>verified TPU kernels</em>",
+    summary:"A <strong>deterministic, zero-hallucination pipeline</strong> that computes numerically-verified JAX/Pallas kernels for Google TPUs — the tile sizes come from hardware math, not an LLM guess. A VMEM-aware <strong>TileSolver</strong> feeds a LanceDB <strong>RAG</strong> retriever and an <strong>Assembler</strong> that only injects solver integers into pre-verified templates (never free-form codegen); a <strong>VerificationGate</strong> then checks every kernel against a JAX baseline. Built at QuackHacks 2026, tested on <strong>Cloud TPU v5e</strong>.",
+    stack:["JAX","PALLAS","TPU v5e","LANCEDB","KUZU","FASTMCP","PYTHON"], cta:"https://github.com/Myan17/Kernel-Factory", demo:"https://myan17.github.io/Kernel-Factory/#demo",
+    metrics:[{k:"// vs XLA", v:"+<em>5</em>%", sub:"FFN-DOWN KERNEL · +3% ON RMSNORM"},{k:"// Verified", v:"<em>92</em>", sub:"UNIT TESTS PASS · 0.00 MAX ERROR"}],
+    visKind:"kernel" },
+  { id:"REF_W02", date:"APR'26 — PRESENT", num:"02 / 06",
     title:"PriorAuthAI · <em>autonomous PA</em>",
     summary:"Autonomous multi-agent system handling prior authorization end-to-end for the 200K small U.S. practices enterprise tools can't reach. Plain TypeScript <strong>12-state machine</strong>, Claude Sonnet 4.6 orchestrator, Haiku 4.5 classifier, TinyFish for browser automation. Doctor's total time per PA: <strong>8 seconds</strong>.",
     stack:["TYPESCRIPT","CLAUDE","TINYFISH","SUPABASE","NEXT.JS"], cta:REPO,
     metrics:[{k:"// Doctor time", v:"<em>8</em>s", sub:"AGENT HANDLES THE REMAINING 3:52"},{k:"// Practices", v:"<em>200K</em>", sub:"STRUCTURALLY UNDERSERVED"}],
     visKind:"priorauth" },
-  { id:"REF_W02", date:"MAR'26 — PRESENT", num:"02 / 05",
+  { id:"REF_W03", date:"MAR'26 — PRESENT", num:"03 / 06",
     title:"Inclusive<em>Alert</em>",
     summary:"Full-stack <strong>accessibility-accommodation alert platform</strong> — real-time alerts when elevators go out, ramps are blocked, or accessible routes change, with <strong>geo-aware safe-space matching</strong> via PostGIS. Next.js on Vercel, FastAPI on Railway, Postgres + PostGIS, Redis cache, Alembic migrations.",
     stack:["NEXT.JS","FASTAPI","POSTGIS","RAILWAY","VERCEL","REDIS"], cta:"https://github.com/Myan17/InclusiveAlert",
     metrics:[{k:"// Full-stack", v:"<em>5</em>", sub:"VERCEL · RAILWAY · POSTGIS · REDIS · ALEMBIC"},{k:"// Commits", v:"<em>37</em>", sub:"DEPLOY-READY · DEMO SEED INCLUDED"}],
     visKind:"inclusive" },
-  { id:"REF_W03", date:"FEB'26 — MAR'26", num:"03 / 05",
+  { id:"REF_W04", date:"FEB'26 — MAR'26", num:"04 / 06",
     title:"ICU <em>Capacity</em> Forecasting",
     summary:"Containerized ML platform on <strong>AWS EC2, S3, Lambda</strong> with REST APIs + React dashboard for hospital capacity planning. Optimized API queries and concurrency. SARIMA, Prophet, and federated learning across 8 clients.",
     stack:["FASTAPI","AWS","REACT","DOCKER","PROPHET"], cta:REPO,
     metrics:[{k:"// P95 latency", v:"<em>14</em>ms <span style='font-size:0.35em; color:var(--muted); font-style:normal;'>↓ from 360ms</span>", sub:"26× FASTER FORECAST RETRIEVAL"},{k:"// Federated", v:"<em>8</em>", sub:"HOSPITAL CLIENTS · NON-IID"}],
     visKind:"icu" },
-  { id:"REF_W04", date:"JAN'26 — PRESENT", num:"04 / 05",
+  { id:"REF_W05", date:"JAN'26 — PRESENT", num:"05 / 06",
     title:"RL <em>Benchmarking</em>",
     summary:"OpenEnv-compatible Reinforcement Learning evaluation backend for email workflows. Async <strong>JSON-RPC MCP server</strong> with Pydantic validation runs 20+ scenarios. Deterministic grading, trace logging, integration tests across three benchmark tiers.",
     stack:["PYTHON","JSON-RPC","PYDANTIC","PYTORCH","OpenEnv"], cta:REPO,
     metrics:[{k:"// Mean return", v:"<em>0.967</em>", sub:"ACROSS BENCHMARK TIERS"},{k:"// Coverage", v:"<em>20</em>+", sub:"CLASSIFICATION · DRAFTING · WORKFLOW"}],
     visKind:"rl" },
-  { id:"REF_W05", date:"APR'26 — PRESENT", num:"05 / 05",
+  { id:"REF_W06", date:"APR'26 — PRESENT", num:"06 / 06",
     title:"Consistent-Hash <em>KV Store</em>",
     summary:"Distributed KV store in <strong>Go</strong> with consistent hashing — minimizes remapping during cluster changes. Containerized router and storage nodes with Docker. REST APIs for health, KV ops, ring inspection, node debugging.",
     stack:["GO","DOCKER","k6","REST"], cta:REPO,
@@ -850,28 +874,30 @@ const WORKS = [
 ];
 
 const PROJECTS = [
-  { id:"P01", title:"PriorAuthAI", role:"Top 9 · Origin House O1", desc:"Multi-agent prior-auth for 200K small U.S. practices. 12-state TS orchestrator + Claude + TinyFish.", tags:["TS","Claude","TinyFish"], date:"APR'26", repo:REPO },
-  { id:"P02", title:"InclusiveAlert", role:"Solo · Deployed", desc:"Full-stack accessibility alert platform. Next.js + FastAPI + PostGIS for geo-matching. 37 commits.", tags:["Next.js","FastAPI","PostGIS","Vercel"], date:"MAR'26", repo:"https://github.com/Myan17/InclusiveAlert" },
-  { id:"P03", title:"ICU Capacity Forecasting", role:"Solo", desc:"FastAPI + AWS + React. P95 360ms → 14ms. SARIMA/Prophet/federated learning across 8 clients.", tags:["FastAPI","AWS","React"], date:"FEB'26", repo:REPO },
-  { id:"P04", title:"RL Benchmarking Platform", role:"Solo", desc:"OpenEnv-compatible RL eval backend, JSON-RPC MCP server. 0.967 mean return, 3 benchmark tiers.", tags:["Python","JSON-RPC","PyTorch"], date:"JAN'26", repo:REPO },
-  { id:"P05", title:"Consistent-Hash KV Store", role:"Solo", desc:"Go distributed KV store. k6 load tests: 20 VUs, 60K ops, sub-500ms P95.", tags:["Go","Docker","k6"], date:"APR'26", repo:REPO },
-  { id:"P06", title:"auto-apply", role:"Solo", desc:"GPT-4o Vision agent driving real Chromium via Playwright across Workday, Greenhouse, Lever, Ashby. Google Sheets-driven.", tags:["GPT-4o","Playwright","Python"], date:"MAR'26", repo:"https://github.com/Myan17/auto-apply" },
-  { id:"P07", title:"Ad Creative CTR Prediction", role:"INET 4061 · Final", desc:"Avazu CTR · 500K impressions → 1,191 creatives. XGBoost + RF + K-Means. ROC-AUC 0.662 (5-fold CV ± 0.040), Mann-Whitney p=0.027.", tags:["XGBoost","scikit-learn","K-Means"], date:"2025", repo:REPO },
-  { id:"P08", title:"Skunk-Game <span class='live-tag'>● LIVE</span>", role:"Solo · Deployed", desc:"Press-your-luck dice game with risk-budget mechanics. Vanilla JS, deployed via GitHub Pages.", tags:["JS","HTML","Probability"], date:"2025", repo:"https://github.com/Myan17/Skunk-Game", live:"https://myan17.github.io/Skunk-Game/" },
-  { id:"P09", title:"Sharpe_optimizer", role:"Solo · Quant", desc:"Portfolio Sharpe-ratio optimizer over multi-asset returns with tangency-portfolio solver.", tags:["Quant","Python","Portfolio"], date:"2025", repo:"https://github.com/Myan17/Sharpe_optimizer" },
-  { id:"P10", title:"Rolling Correlation·Covariance", role:"Solo · Quant", desc:"Rolling-window correlation and covariance estimators for multi-asset return series.", tags:["Quant","Pandas","Stats"], date:"2025", repo:"https://github.com/Myan17/Rolling_Correlation-Covariance" },
-  { id:"P11", title:"portfolio_analyzer", role:"Solo · Quant", desc:"Portfolio risk/return analyzer with drawdown, Sharpe, and exposure decomposition.", tags:["Quant","Pandas","NumPy"], date:"2025", repo:"https://github.com/Myan17/portfolio_analyzer" },
-  { id:"P12", title:"daily-returns-analyzer", role:"Solo · Quant", desc:"Daily-returns analyzer producing distribution stats, autocorrelation, and visualization.", tags:["Quant","Pandas","Plot"], date:"2025", repo:"https://github.com/Myan17/daily-returns-analyzer" },
-  { id:"P13", title:"quant-project-3", role:"Solo · Quant", desc:"Quant research project — strategy prototyping and analysis. See repo for spec.", tags:["Quant","Python"], date:"2025", repo:"https://github.com/Myan17/quant-project-3" },
-  { id:"P14", title:"Appointment-Scheduling-API", role:"Solo · Backend", desc:"REST API for appointment scheduling with conflict detection and time-slot management.", tags:["Backend","REST","API"], date:"2025", repo:"https://github.com/Myan17/Appointment-Scheduling-API" },
-  { id:"P15", title:"Multi-Agent Trace Analysis", role:"Research · UMN", desc:"Categorize 1,600+ traces across 7 frameworks × 14 failure modes. LLM-as-a-judge validation.", tags:["Python","FastAPI","LLM Eval"], date:"JAN'25", repo:REPO },
-  { id:"P16", title:"BETA Accelerator · AI Cohort", role:"Instructor", desc:"Conducted an AI cohort teaching non-technical founders to vibe-code production prototypes.", tags:["Curriculum","AI Tools"], date:"2026", repo:REPO },
-  { id:"P17", title:"Quant Lab", role:"Live in /lab", desc:"Monte Carlo option pricer, SMA backtest with drawdown, 2-asset efficient frontier — all interactive.", tags:["Black-Scholes","Backtest","Frontier"], date:"—", repo:"#lab", labTab:"quant" }
+  { id:"P01", title:"Kernel Factory <span class='live-tag'>● LIVE</span>", role:"QuackHacks 2026 · Solo", desc:"Deterministic pipeline computing numerically-verified JAX/Pallas TPU kernels. VMEM-aware tile solver + LanceDB RAG + verification gate. Beats XLA on FFN-down (+5%) & RMSNorm (+3%). 92 tests, Cloud TPU v5e.", tags:["JAX","Pallas","TPU","RAG","MCP"], date:"MAY'26", repo:"https://github.com/Myan17/Kernel-Factory", live:"https://myan17.github.io/Kernel-Factory/#demo" },
+  { id:"P02", title:"PriorAuthAI", role:"Top 9 · Origin House O1", desc:"Multi-agent prior-auth for 200K small U.S. practices. 12-state TS orchestrator + Claude + TinyFish.", tags:["TS","Claude","TinyFish"], date:"APR'26", repo:REPO },
+  { id:"P03", title:"InclusiveAlert", role:"Solo · Deployed", desc:"Full-stack accessibility alert platform. Next.js + FastAPI + PostGIS for geo-matching. 37 commits.", tags:["Next.js","FastAPI","PostGIS","Vercel"], date:"MAR'26", repo:"https://github.com/Myan17/InclusiveAlert" },
+  { id:"P04", title:"ICU Capacity Forecasting", role:"Solo", desc:"FastAPI + AWS + React. P95 360ms → 14ms. SARIMA/Prophet/federated learning across 8 clients.", tags:["FastAPI","AWS","React"], date:"FEB'26", repo:REPO },
+  { id:"P05", title:"RL Benchmarking Platform", role:"Solo", desc:"OpenEnv-compatible RL eval backend, JSON-RPC MCP server. 0.967 mean return, 3 benchmark tiers.", tags:["Python","JSON-RPC","PyTorch"], date:"JAN'26", repo:REPO },
+  { id:"P06", title:"Consistent-Hash KV Store", role:"Solo", desc:"Go distributed KV store. k6 load tests: 20 VUs, 60K ops, sub-500ms P95.", tags:["Go","Docker","k6"], date:"APR'26", repo:REPO },
+  { id:"P07", title:"auto-apply", role:"Solo", desc:"GPT-4o Vision agent driving real Chromium via Playwright across Workday, Greenhouse, Lever, Ashby. Google Sheets-driven.", tags:["GPT-4o","Playwright","Python"], date:"MAR'26", repo:"https://github.com/Myan17/auto-apply" },
+  { id:"P08", title:"Ad Creative CTR Prediction", role:"INET 4061 · Final", desc:"Avazu CTR · 500K impressions → 1,191 creatives. XGBoost + RF + K-Means. ROC-AUC 0.662 (5-fold CV ± 0.040), Mann-Whitney p=0.027.", tags:["XGBoost","scikit-learn","K-Means"], date:"2025", repo:REPO },
+  { id:"P09", title:"Skunk-Game <span class='live-tag'>● LIVE</span>", role:"Solo · Deployed", desc:"Press-your-luck dice game with risk-budget mechanics. Vanilla JS, deployed via GitHub Pages.", tags:["JS","HTML","Probability"], date:"2025", repo:"https://github.com/Myan17/Skunk-Game", live:"https://myan17.github.io/Skunk-Game/" },
+  { id:"P10", title:"Sharpe_optimizer", role:"Solo · Quant", desc:"Portfolio Sharpe-ratio optimizer over multi-asset returns with tangency-portfolio solver.", tags:["Quant","Python","Portfolio"], date:"2025", repo:"https://github.com/Myan17/Sharpe_optimizer" },
+  { id:"P11", title:"Rolling Correlation·Covariance", role:"Solo · Quant", desc:"Rolling-window correlation and covariance estimators for multi-asset return series.", tags:["Quant","Pandas","Stats"], date:"2025", repo:"https://github.com/Myan17/Rolling_Correlation-Covariance" },
+  { id:"P12", title:"portfolio_analyzer", role:"Solo · Quant", desc:"Portfolio risk/return analyzer with drawdown, Sharpe, and exposure decomposition.", tags:["Quant","Pandas","NumPy"], date:"2025", repo:"https://github.com/Myan17/portfolio_analyzer" },
+  { id:"P13", title:"daily-returns-analyzer", role:"Solo · Quant", desc:"Daily-returns analyzer producing distribution stats, autocorrelation, and visualization.", tags:["Quant","Pandas","Plot"], date:"2025", repo:"https://github.com/Myan17/daily-returns-analyzer" },
+  { id:"P14", title:"quant-project-3", role:"Solo · Quant", desc:"Quant research project — strategy prototyping and analysis. See repo for spec.", tags:["Quant","Python"], date:"2025", repo:"https://github.com/Myan17/quant-project-3" },
+  { id:"P15", title:"Appointment-Scheduling-API", role:"Solo · Backend", desc:"REST API for appointment scheduling with conflict detection and time-slot management.", tags:["Backend","REST","API"], date:"2025", repo:"https://github.com/Myan17/Appointment-Scheduling-API" },
+  { id:"P16", title:"Multi-Agent Trace Analysis", role:"Research · UMN", desc:"Categorize 1,600+ traces across 7 frameworks × 14 failure modes. LLM-as-a-judge validation.", tags:["Python","FastAPI","LLM Eval"], date:"JAN'25", repo:REPO },
+  { id:"P17", title:"BETA Accelerator · AI Cohort", role:"Instructor", desc:"Conducted an AI cohort teaching non-technical founders to vibe-code production prototypes.", tags:["Curriculum","AI Tools"], date:"2026", repo:REPO },
+  { id:"P18", title:"Quant Lab", role:"Live in /lab", desc:"Monte Carlo option pricer, SMA backtest with drawdown, 2-asset efficient frontier — all interactive.", tags:["Black-Scholes","Backtest","Frontier"], date:"—", repo:"#lab", labTab:"quant" }
 ];
 
 const EVENTS = [
-  { badge:"HACKATHON · APRIL 2026", title:"Origin House <em>O1</em> Hackathon", role:"Co-builder · <strong>Top 9 team</strong>", place:"Origin House", date:"Apr 19—20, 2026", body:"Built <strong>PriorAuthAI</strong> — an autonomous multi-agent system handling U.S. prior authorization end-to-end. Plain TypeScript state machine (no LangChain), Claude Sonnet 4.6 orchestrator, Haiku 4.5 classifier, TinyFish for browser automation across payer portals. Targets the 200,000 small practices enterprise vendors structurally won't serve.", glyph:"O1" },
-  { badge:"INSTRUCTOR · 2026", title:"BETA Accelerator · <em>AI Cohort</em>", role:"Conducting instructor", place:"BETA Accelerator", date:"2026", body:"Conducted an AI cohort teaching <strong>non-technical founders how to vibe-code</strong> — translating product instincts into working prototypes using modern AI tooling, agent frameworks, and rapid-iteration patterns. Designed the curriculum, ran live sessions, and supported builders through their first deployable releases.", glyph:"β" }
+  { badge:"HACKATHON · APRIL 2026", title:"Origin House <em>O1</em> Hackathon", role:"Co-builder · <strong>Top 9 team</strong>", place:"Origin House", date:"Apr 19—20, 2026", body:"Built <strong>PriorAuthAI</strong> — an autonomous multi-agent system handling U.S. prior authorization end-to-end. Plain TypeScript state machine (no LangChain), Claude Sonnet 4.6 orchestrator, Haiku 4.5 classifier, TinyFish for browser automation across payer portals. Targets the 200,000 small practices enterprise vendors structurally won't serve.", glyph:"O1", img:"images/origin-house.jpg", alt:"Building PriorAuthAI at the Origin House O1 Hackathon" },
+  { badge:"HACKATHON · MAY 2026", title:"QuackHacks <em>3</em>", role:"Participant", place:"University of Oregon", date:"May 30—31, 2026", body:"Accepted to and attended <strong>QuackHacks 3</strong> at the University of Oregon — Oregon's largest hackathon, with <strong>250+ hackers</strong> over 24 hours, MLH-sanctioned, hosted in the EMU Ballroom. There I built <strong>Kernel Factory</strong> — a deterministic pipeline that computes numerically-verified JAX/Pallas kernels for Google TPUs (featured up top), alongside sponsors including Google, MongoDB, and Base44.", glyph:"QH", img:"images/quackhacks.jpg", alt:"At QuackHacks 3, University of Oregon" },
+  { badge:"INSTRUCTOR · 2026", title:"BETA Accelerator · <em>AI Cohort</em>", role:"Conducting instructor", place:"BETA Accelerator", date:"2026", body:"Conducted an AI cohort teaching <strong>non-technical founders how to vibe-code</strong> — translating product instincts into working prototypes using modern AI tooling, agent frameworks, and rapid-iteration patterns. Designed the curriculum, ran live sessions, and supported builders through their first deployable releases.", glyph:"β", img:"images/beta-cohort.jpg", alt:"BETA Accelerator AI Cohort session" }
 ];
 
 /* RENDER STACK */
@@ -887,11 +913,12 @@ function renderWorkVis(kind) {
   if (kind === 'icu') return `<svg viewBox="0 0 320 120" style="width:100%;height:auto;"><path d="M10,40 Q60,15 110,30 T210,45 T310,25" fill="none" stroke="#ff5ea3" stroke-width="1.5" stroke-dasharray="3 3"/><path d="M10,60 Q60,45 110,55 T210,60 T310,50" fill="none" stroke="#d4ff3a" stroke-width="2"/><path d="M10,90 Q60,80 110,85 T210,82 T310,86" fill="none" stroke="#5ee3ff" stroke-width="1.5"/><circle cx="310" cy="25" r="3" fill="#ff5ea3"/><circle cx="310" cy="50" r="3" fill="#d4ff3a"/><circle cx="310" cy="86" r="3" fill="#5ee3ff"/><text x="10" y="115" font-family="JetBrains Mono" font-size="9" fill="#6c6e78" letter-spacing="2">FORECAST · 8 CLIENTS · 30D</text></svg>`;
   if (kind === 'rl') return `<svg viewBox="0 0 320 120" style="width:100%;height:auto;"><defs><linearGradient id="rlbar"><stop offset="0%" stop-color="#d4ff3a"/><stop offset="100%" stop-color="#5ee3ff"/></linearGradient></defs><rect x="0" y="80" width="32" height="32" fill="rgba(212,255,58,0.3)"/><rect x="36" y="60" width="32" height="52" fill="rgba(212,255,58,0.45)"/><rect x="72" y="40" width="32" height="72" fill="rgba(212,255,58,0.6)"/><rect x="108" y="30" width="32" height="82" fill="rgba(212,255,58,0.7)"/><rect x="144" y="20" width="32" height="92" fill="rgba(212,255,58,0.8)"/><rect x="180" y="14" width="32" height="98" fill="rgba(212,255,58,0.88)"/><rect x="216" y="10" width="32" height="102" fill="rgba(212,255,58,0.95)"/><rect x="252" y="6" width="32" height="106" fill="url(#rlbar)"/><rect x="288" y="2" width="32" height="110" fill="url(#rlbar)"/><text x="160" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#6c6e78" letter-spacing="2">MEAN RETURN · TIER 3</text></svg>`;
   if (kind === 'ring') return `<svg viewBox="0 0 320 140" style="width:100%;height:auto;"><circle cx="160" cy="70" r="50" fill="none" stroke="rgba(212,255,58,0.3)" stroke-width="1.5"/><circle cx="160" cy="20" r="7" fill="#0a0a0e" stroke="#d4ff3a" stroke-width="2"/><circle cx="210" cy="70" r="7" fill="#0a0a0e" stroke="#ff5ea3" stroke-width="2"/><circle cx="160" cy="120" r="7" fill="#0a0a0e" stroke="#ff8c42" stroke-width="2"/><circle cx="110" cy="70" r="7" fill="#0a0a0e" stroke="#5ee3ff" stroke-width="2"/><g fill="#d4ff3a"><circle cx="175" cy="22" r="2"/><circle cx="190" cy="35" r="2"/><circle cx="200" cy="50" r="2"/></g><g fill="#ff5ea3"><circle cx="208" cy="88" r="2"/><circle cx="195" cy="108" r="2"/></g><g fill="#ff8c42"><circle cx="142" cy="118" r="2"/><circle cx="125" cy="108" r="2"/></g><g fill="#5ee3ff"><circle cx="113" cy="55" r="2"/><circle cx="125" cy="38" r="2"/></g><text x="160" y="138" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#6c6e78" letter-spacing="2">HASH RING · 4 NODES</text></svg>`;
+  if (kind === 'kernel') return `<svg viewBox="0 0 320 140" style="width:100%;height:auto;"><g font-family="JetBrains Mono" font-size="9"><rect x="6" y="24" width="58" height="24" fill="rgba(212,255,58,0.18)" stroke="#d4ff3a" rx="4"/><text x="35" y="39" text-anchor="middle" fill="#d4ff3a">SOLVE</text><line x1="64" y1="36" x2="84" y2="36" stroke="#383942" stroke-dasharray="2 2"/><rect x="84" y="24" width="50" height="24" fill="rgba(94,227,255,0.15)" stroke="#5ee3ff" rx="4"/><text x="109" y="39" text-anchor="middle" fill="#5ee3ff">RAG</text><line x1="134" y1="36" x2="154" y2="36" stroke="#383942" stroke-dasharray="2 2"/><rect x="154" y="24" width="74" height="24" fill="rgba(255,140,66,0.15)" stroke="#ff8c42" rx="4"/><text x="191" y="39" text-anchor="middle" fill="#ff8c42">ASSEMBLE</text><line x1="228" y1="36" x2="248" y2="36" stroke="#383942" stroke-dasharray="2 2"/><rect x="248" y="24" width="66" height="24" fill="rgba(255,94,163,0.18)" stroke="#ff5ea3" rx="4"/><text x="281" y="39" text-anchor="middle" fill="#ff5ea3">VERIFY</text><rect x="80" y="72" width="160" height="30" fill="rgba(212,255,58,0.10)" stroke="#d4ff3a" stroke-width="1.5" rx="6"/><text x="160" y="91" text-anchor="middle" fill="#d4ff3a" font-size="10.5">✓ jnp.allclose · max_err 0.00</text><text x="160" y="124" text-anchor="middle" fill="#6c6e78" letter-spacing="1.5">VMEM-AWARE TILES · NO FREE-FORM CODEGEN</text></g></svg>`;
   return '';
 }
 (() => { const wrap = document.getElementById('worksWrap');
   WORKS.forEach(w => { const metrics = w.metrics.map(m => `<div class="work-metric"><div class="k">${m.k}</div><div class="v">${m.v}</div><div class="sub">${m.sub}</div></div>`).join('');
-    wrap.insertAdjacentHTML('beforeend', `<div class="work-pin reveal"><div class="left"><div class="meta"><span class="id">${w.id} / ${w.date}</span><span>${w.num}</span></div><h3>${w.title}</h3><p class="summary">${w.summary}</p><div class="stack">${w.stack.map(s => `<span>${s}</span>`).join('')}</div><div class="cta-row"><a class="btn magnetic" data-cursor="hover" href="${w.cta}" target="_blank" rel="noopener">View on GitHub <span class="arrow">↗</span></a></div></div><div class="right">${metrics}<div class="work-vis">${renderWorkVis(w.visKind)}</div></div></div>`); });
+    wrap.insertAdjacentHTML('beforeend', `<div class="work-pin reveal"><div class="left"><div class="meta"><span class="id">${w.id} / ${w.date}</span><span>${w.num}</span></div><h3>${w.title}</h3><p class="summary">${w.summary}</p><div class="stack">${w.stack.map(s => `<span>${s}</span>`).join('')}</div><div class="cta-row">${w.demo ? `<a class="btn btn-primary magnetic" data-cursor="hover" href="${w.demo}" target="_blank" rel="noopener">Live demo <span class="arrow">↗</span></a>` : ''}<a class="btn magnetic" data-cursor="hover" href="${w.cta}" target="_blank" rel="noopener">View on GitHub <span class="arrow">↗</span></a></div></div><div class="right">${metrics}<div class="work-vis">${renderWorkVis(w.visKind)}</div></div></div>`); });
 })();
 
 /* RENDER ALL PROJECTS */
@@ -915,7 +942,7 @@ function renderWorkVis(kind) {
 
 /* RENDER EVENTS */
 (() => { const grid = document.getElementById('eventsGrid');
-  EVENTS.forEach(e => { grid.insertAdjacentHTML('beforeend', `<div class="event"><div class="event-img placeholder"><div class="img-glyph">${e.glyph}</div><div class="placeholder-label">// IMAGE PLACEHOLDER</div></div><div class="event-body"><div class="ebadge">${e.badge}</div><h4>${e.title}</h4><div class="erow"><span><b>Role</b> · ${e.role}</span><span><b>${e.place}</b> · ${e.date}</span></div><p>${e.body}</p></div></div>`); });
+  EVENTS.forEach(e => { const photo = e.img ? `<img class="event-photo" src="${e.img}" alt="${e.alt || e.place}" loading="lazy" onerror="this.remove();">` : ''; const label = e.img ? '// PHOTO' : '// IMAGE PLACEHOLDER'; grid.insertAdjacentHTML('beforeend', `<div class="event"><div class="event-img placeholder"><div class="img-glyph">${e.glyph}</div>${photo}<div class="placeholder-label">${label}</div></div><div class="event-body"><div class="ebadge">${e.badge}</div><h4>${e.title}</h4><div class="erow"><span><b>Role</b> · ${e.role}</span><span><b>${e.place}</b> · ${e.date}</span></div><p>${e.body}</p></div></div>`); });
 })();
 
 /* BOOT LOADER */
@@ -982,11 +1009,11 @@ function renderWorkVis(kind) {
 /* HERO FLOW FIELD */
 (() => { const c = document.getElementById('hero-canvas'); if (!c) return;
   const ctx = c.getContext('2d'); let W, H, dpr; const N = 100; const parts = [];
-  function resize() { dpr = devicePixelRatio || 1; W = c.clientWidth = innerWidth; H = c.clientHeight = c.parentElement.clientHeight; c.width = W * dpr; c.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+  function resize() { dpr = devicePixelRatio || 1; W = c.clientWidth; H = c.clientHeight; c.width = W * dpr; c.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
   function init() { parts.length = 0; for (let i = 0; i < N; i++) parts.push({ x: Math.random()*W, y: Math.random()*H, life: Math.random() * 200 }); }
   function noise(x, y, t) { return Math.sin(x * 0.003 + t * 0.0006) * Math.cos(y * 0.003 + t * 0.0004); }
   let t = 0;
-  function frame() { t += 16; ctx.fillStyle = 'rgba(8,8,12,0.10)'; ctx.fillRect(0, 0, W, H); parts.forEach(p => { const n = noise(p.x, p.y, t) * Math.PI * 2; p.x += Math.cos(n) * 0.7; p.y += Math.sin(n) * 0.7; p.life--; if (p.x < 0 || p.x > W || p.y < 0 || p.y > H || p.life < 0) { p.x = Math.random()*W; p.y = Math.random()*H; p.life = 100 + Math.random()*200; } ctx.fillStyle = 'rgba(212,255,58,0.20)'; ctx.fillRect(p.x, p.y, 1.4, 1.4); }); requestAnimationFrame(frame); }
+  function frame() { t += 16; ctx.clearRect(0, 0, W, H); parts.forEach(p => { const n = noise(p.x, p.y, t) * Math.PI * 2; p.x += Math.cos(n) * 0.7; p.y += Math.sin(n) * 0.7; p.life--; if (p.x < 0 || p.x > W || p.y < 0 || p.y > H || p.life < 0) { p.x = Math.random()*W; p.y = Math.random()*H; p.life = 100 + Math.random()*200; } ctx.fillStyle = 'rgba(212,255,58,0.20)'; ctx.fillRect(p.x, p.y, 1.4, 1.4); }); requestAnimationFrame(frame); }
   addEventListener('resize', resize); resize(); init(); frame();
 })();
 
