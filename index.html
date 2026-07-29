@@ -492,7 +492,7 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
 </section>
 
 <div class="now-strip">
-  <span class="item"><span class="pulse"></span><span class="label">NOW SHIPPING</span><span class="val">PriorAuthAI · InclusiveAlert · Quant Lab</span></span>
+  <span class="item"><span class="pulse"></span><span class="label">NOW SHIPPING</span><span class="val">Interlock · ScaleGraph · Kernel Factory</span></span>
   <span class="item"><span class="label">LOCATION</span><span class="val">Redmond, WA · <span id="ptClock">--:--</span> PT</span></span>
   <span class="item"><span class="label">CURRENTLY</span><span class="val">Research Assistant @ UMN</span></span>
   <span class="item"><span class="label">SEEKING</span><span class="val">Internships &amp; Full-Time</span></span>
@@ -509,15 +509,15 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
     <div class="about-body reveal">
       <p>I'm a CS student at the <strong>University of Minnesota</strong> (B.S. May '27, 3.8 GPA) working at the edge where infrastructure meets AI — building things that move actual numbers and survive scrutiny in a postmortem.</p>
       <p class="about-pull">"I gravitate toward problems with hard latency targets, real concurrency, and metrics you can defend."</p>
-      <p>Recent work spans <strong>PriorAuthAI</strong> (Top 9 at Origin House O1, autonomous multi-agent prior auth for 200K underserved practices), <strong>InclusiveAlert</strong> (full-stack accessibility platform on Vercel + Railway with PostGIS), an <strong>ICU forecasting platform</strong> that cut P95 from 360ms to 14ms, a Go consistent-hash KV store benchmarked at sub-500ms P95 under 60K ops, and a suite of <strong>quant tools</strong> — Sharpe optimizer, rolling correlation/covariance, portfolio analyzer.</p>
+      <p>Recent work spans <strong>Interlock</strong> (a deterministic control plane that decides ALLOW/HALT/ESCALATE on every agent tool call before it can touch anything real), <strong>ScaleGraph</strong> (a grounded conference knowledge graph whose answers are extractive-by-construction, so it refuses instead of hallucinating), <strong>PriorAuthAI</strong> (Top 9 at Origin House O1, autonomous multi-agent prior auth for 200K underserved practices), <strong>InclusiveAlert</strong> (full-stack accessibility platform on Vercel + Railway with PostGIS), an <strong>ICU forecasting platform</strong> that cut P95 from 360ms to 14ms, a Go consistent-hash KV store benchmarked at sub-500ms P95 under 60K ops, and a suite of <strong>quant tools</strong> — Sharpe optimizer, rolling correlation/covariance, portfolio analyzer.</p>
       <p>As a <strong>Research Assistant</strong>, I build trace-analysis workflows for multi-agent LLM systems — categorizing 1,600+ annotated traces across 7 frameworks and 14 failure modes, with LLM-as-a-judge validation tracking accuracy, agreement, latency, throughput, and failure distribution. As a <strong>Teaching Assistant</strong>, I've mentored 100+ students in systems programming.</p>
     </div>
     <div class="about-side reveal">
       <div class="about-card">
         <h4>Currently shipping</h4>
-        <div class="row"><span class="dot"></span><span>PriorAuthAI · Multi-Agent</span></div>
-        <div class="row"><span class="dot" style="background:var(--coral)"></span><span>InclusiveAlert · Full-Stack</span></div>
-        <div class="row"><span class="dot" style="background:var(--warm)"></span><span>Quant suite · 7 repos</span></div>
+        <div class="row"><span class="dot"></span><span>Interlock · Agent Safety</span></div>
+        <div class="row"><span class="dot" style="background:var(--coral)"></span><span>ScaleGraph · Knowledge Graph</span></div>
+        <div class="row"><span class="dot" style="background:var(--warm)"></span><span>PriorAuthAI · Multi-Agent</span></div>
       </div>
       <div class="about-card">
         <h4>Open to</h4>
@@ -534,7 +534,7 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
   <div class="stats reveal">
     <div class="stat"><div class="num"><span data-count="3.8">0.0</span></div><div class="label">GPA · Dean's List</div></div>
     <div class="stat"><div class="num"><span data-count="1600">0</span><em>+</em></div><div class="label">Traces analyzed</div></div>
-    <div class="stat"><div class="num"><span data-count="16">0</span></div><div class="label">GitHub repos</div></div>
+    <div class="stat"><div class="num"><span data-count="18">0</span></div><div class="label">GitHub repos</div></div>
     <div class="stat"><div class="num"><span data-count="26">0</span><em>×</em></div><div class="label">P95 speedup</div></div>
   </div>
 </section>
@@ -548,11 +548,13 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
 <section id="lab" class="lab">
   <div class="sec-label">03 / Lab <span class="ref">— Live interactive demos · REF_003</span></div>
   <h2 class="sec-title reveal">Demos that actually <em>run</em>.</h2>
-  <p class="sec-sub reveal">No video walkthroughs — these run in your browser. Click around. Tune parameters. Watch the math update in real time.</p>
+  <p class="sec-sub reveal">No video walkthroughs — six live demos, all running in your browser. Click around. Tune parameters. Confirm a policy and watch an agent get halted. Watch the math update in real time.</p>
 
   <div class="lab-tabs reveal">
     <button class="lab-tab active" data-cursor="hover" data-tab="quant">// Quant Lab</button>
     <button class="lab-tab" data-cursor="hover" data-tab="kernel">// Kernel Factory</button>
+    <button class="lab-tab" data-cursor="hover" data-tab="interlock">// Interlock</button>
+    <button class="lab-tab" data-cursor="hover" data-tab="scalegraph">// ScaleGraph</button>
     <button class="lab-tab" data-cursor="hover" data-tab="ring">// Consistent-hash ring</button>
     <button class="lab-tab" data-cursor="hover" data-tab="latency">// 360ms → 14ms latency</button>
   </div>
@@ -671,20 +673,54 @@ footer .col .sig { font-family: var(--serif); font-style: italic; font-size: 28p
       </div>
     </div>
   </div>
+
+  <div class="demo" data-demo="interlock">
+    <div class="demo-canvas" style="padding:0; overflow:hidden;">
+      <iframe src="https://interlock-demo.agreeablestone-318f5583.eastus.azurecontainerapps.io" title="Interlock — live Safety Operations Center demo" loading="lazy" style="width:100%; height:100%; min-height:540px; border:0; background:var(--bg-2); display:block;"></iframe>
+    </div>
+    <div class="demo-side">
+      <div class="tag">// flagship · Python + FastAPI + Next.js 15 · Azure</div>
+      <h3>Interlock, <em>enforcing live</em>.</h3>
+      <p class="desc">A <strong>deterministic safety layer</strong> between autonomous agents and the tools they can affect. An agent drafts a least-privilege policy, a human confirms the authority, then a <strong>pure policy-as-code engine</strong> returns <strong>ALLOW / HALT / ESCALATE</strong> on every concrete tool call — the engine imports no model, no network client, no effect adapter, and a purity test enforces that.</p>
+      <p class="desc">Drive the real Safety Operations Center here: <strong>Policy studio → confirm authority → run safety demo → inspect the decision stream</strong>. The staging instance starts with empty fixtures, so zero counters are expected until you run the demo.</p>
+      <p class="desc"><strong>152 Python tests</strong> across unit, contract, purity, and tenancy suites · golden adversarial scenarios · fail-closed evaluator. Built at the OpenAI Hackathon with Codex + GPT-5.6 — neither of which touches the enforcement decision.</p>
+      <div class="demo-controls">
+        <a class="btn btn-primary magnetic" data-cursor="hover" href="https://interlock-demo.agreeablestone-318f5583.eastus.azurecontainerapps.io" target="_blank" rel="noopener">Open full demo <span class="arrow">↗</span></a>
+        <a class="btn magnetic" data-cursor="hover" href="https://github.com/Myan17/OpenAI-Hack" target="_blank" rel="noopener">View source <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo" data-demo="scalegraph">
+    <div class="demo-canvas" style="padding:0; overflow:hidden;">
+      <iframe src="https://myan17.github.io/scalegraph/" title="ScaleGraph — live knowledge-graph demo" loading="lazy" style="width:100%; height:100%; min-height:540px; border:0; background:var(--bg-2); display:block;"></iframe>
+    </div>
+    <div class="demo-side">
+      <div class="tag">// project · TypeScript + Vite · in-browser embeddings</div>
+      <h3>ScaleGraph, <em>grounded by construction</em>.</h3>
+      <p class="desc">An agentic knowledge-graph companion for the <strong>@Scale</strong> conference series. Drag the force-graph to explore talks, speakers, and themes; ask a question and get the speaker's <strong>verbatim segment</strong>, grouped per talk, each with a <strong>▶ watch-from-MM:SS</strong> deep-link — then export the answer as a slide (PNG / PDF / .pptx).</p>
+      <p class="desc">Answers are <strong>fully extractive</strong>: no generative step, so it cannot fabricate — and it <strong>visibly refuses</strong> when retrieval is too weak. Hybrid lexical + semantic retrieval lifts precision@1 from <strong>57% → 79%</strong>. Runs entirely in your browser: <strong>no API keys, no backend, no cost</strong>.</p>
+      <p class="desc"><em>Heads-up:</em> Explore and Timeline are instant, but natural-language search downloads a ~30 MB embedding model once — and GitHub Pages throttles it. Give it a minute on first use, or open the full demo in its own tab.</p>
+      <div class="demo-controls">
+        <a class="btn btn-primary magnetic" data-cursor="hover" href="https://myan17.github.io/scalegraph/" target="_blank" rel="noopener">Open full demo <span class="arrow">↗</span></a>
+        <a class="btn magnetic" data-cursor="hover" href="https://github.com/Myan17/scalegraph" target="_blank" rel="noopener">View source <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="works">
   <div class="sec-label">04 / Featured Works <span class="ref">— REF_004</span></div>
-  <h2 class="sec-title reveal">Six <em>headliners</em>.</h2>
-  <p class="sec-sub reveal">The projects I'm proudest of right now. One computes verified TPU kernels on Google Cloud silicon, two are deployed full-stack, one's a hackathon Top 9, one's pure systems, one's an OpenEnv-compatible RL eval backend.</p>
+  <h2 class="sec-title reveal">Eight <em>headliners</em>.</h2>
+  <p class="sec-sub reveal">The projects I'm proudest of right now. One computes verified TPU kernels on Google Cloud silicon, one is a deterministic control plane that gates what agents are allowed to do, one is a grounded knowledge graph that refuses rather than hallucinates, two are deployed full-stack, one's a hackathon Top 9, one's pure systems, one's an OpenEnv-compatible RL eval backend.</p>
   <div class="works-wrap" id="worksWrap"></div>
-  <div class="view-all"><a class="btn magnetic" data-cursor="hover" href="#projects">All 18 projects <span class="arrow">↓</span></a></div>
+  <div class="view-all"><a class="btn magnetic" data-cursor="hover" href="#projects">All 20 projects <span class="arrow">↓</span></a></div>
 </section>
 
 <section id="projects">
   <div class="sec-label">05 / Catalogue <span class="ref">— REF_005</span></div>
   <h2 class="sec-title reveal">Everything I've <em>built</em>.</h2>
-  <p class="sec-sub reveal">18 projects · 1 verified TPU-kernel pipeline · 7 quant repos · 1 deployed accessibility platform · 1 hackathon flagship · 1 academic ML capstone · 1 live dice game. Hit a card to open the repo or demo.</p>
+  <p class="sec-sub reveal">20 projects · 1 verified TPU-kernel pipeline · 1 agent control plane · 1 grounded knowledge graph · 7 quant repos · 1 deployed accessibility platform · 1 hackathon flagship · 1 academic ML capstone · 1 live dice game. Hit a card to open the repo or demo.</p>
   <div class="proj-grid reveal" id="projGrid"></div>
 </section>
 
@@ -835,37 +871,49 @@ const STACK = [
 ];
 
 const WORKS = [
-  { id:"REF_W01", date:"MAY'26 — PRESENT", num:"01 / 06",
+  { id:"REF_W01", date:"MAY'26 — PRESENT", num:"01 / 08",
     title:"Kernel Factory · <em>verified TPU kernels</em>",
     summary:"A <strong>deterministic, zero-hallucination pipeline</strong> that computes numerically-verified JAX/Pallas kernels for Google TPUs — the tile sizes come from hardware math, not an LLM guess. A VMEM-aware <strong>TileSolver</strong> feeds a LanceDB <strong>RAG</strong> retriever and an <strong>Assembler</strong> that only injects solver integers into pre-verified templates (never free-form codegen); a <strong>VerificationGate</strong> then checks every kernel against a JAX baseline. Built at QuackHacks 2026, tested on <strong>Cloud TPU v5e</strong>.",
     stack:["JAX","PALLAS","TPU v5e","LANCEDB","KUZU","FASTMCP","PYTHON"], cta:"https://github.com/Myan17/Kernel-Factory", demo:"https://myan17.github.io/Kernel-Factory/#demo",
     metrics:[{k:"// vs XLA", v:"+<em>5</em>%", sub:"FFN-DOWN KERNEL · +3% ON RMSNORM"},{k:"// Verified", v:"<em>92</em>", sub:"UNIT TESTS PASS · 0.00 MAX ERROR"}],
     visKind:"kernel" },
-  { id:"REF_W02", date:"APR'26 — PRESENT", num:"02 / 06",
+  { id:"REF_W02", date:"JUL'26 — PRESENT", num:"02 / 08",
+    title:"Interlock · <em>agent control plane</em>",
+    summary:"A <strong>deterministic safety layer</strong> between autonomous agents and the tools they can affect. Agent prompts aren't authorization — so an agent <em>drafts</em> a least-privilege policy, a human <em>confirms</em> the typed authority, and a <strong>pure policy-as-code engine</strong> returns <strong>ALLOW / HALT / ESCALATE</strong> on every concrete tool call before it can reach an effect adapter. The enforcement engine imports no model, network client, database, or adapter — a dedicated <strong>purity test</strong> protects that invariant. A Next.js <strong>Safety Operations Center</strong> exposes the decision stream, review queue, replay, and tamper-evident evidence bundles. Built at the OpenAI Hackathon with Codex + GPT-5.6, deployed to Azure Container Apps via secretless GitHub OIDC.",
+    stack:["PYTHON 3.13","FASTAPI","NEXT.JS 15","REACT 19","PYDANTIC","DOCKER","AZURE"], cta:"https://github.com/Myan17/OpenAI-Hack", demo:"https://interlock-demo.agreeablestone-318f5583.eastus.azurecontainerapps.io",
+    metrics:[{k:"// Verdicts", v:"<em>3</em>", sub:"ALLOW · HALT · ESCALATE · FAIL-CLOSED"},{k:"// Tests", v:"<em>152</em>", sub:"UNIT · CONTRACT · PURITY · TENANCY"}],
+    visKind:"interlock" },
+  { id:"REF_W03", date:"JUN'26 — PRESENT", num:"03 / 08",
+    title:"Scale<em>Graph</em>",
+    summary:"An agentic, <strong>grounded knowledge-graph companion</strong> for the <strong>@Scale</strong> conference series — ingest an agenda plus the published back-catalog, get a queryable graph that answers natural-language questions with <strong>real citations</strong> and auto-renders each answer as an exportable slide. Answers are <strong>fully extractive</strong> — verbatim speaker segments with <strong>▶ watch-from-MM:SS</strong> deep-links — so there is no generative step to hallucinate, and the system <strong>visibly refuses</strong> when retrieval is too weak. Hybrid lexical + semantic retrieval runs a MiniLM embedding model <strong>in the browser</strong>: no API keys, no backend, no cost.",
+    stack:["TYPESCRIPT","VITE","TRANSFORMERS.JS","D3","YT-DLP","GH PAGES"], cta:"https://github.com/Myan17/scalegraph", demo:"https://myan17.github.io/scalegraph/",
+    metrics:[{k:"// Precision@1", v:"<em>79</em>% <span style='font-size:0.35em; color:var(--muted); font-style:normal;'>↑ from 57%</span>", sub:"HYBRID LEXICAL + SEMANTIC RERANK"},{k:"// Fabrication", v:"<em>0</em>", sub:"EXTRACTIVE BY CONSTRUCTION · REFUSES"}],
+    visKind:"scalegraph" },
+  { id:"REF_W04", date:"APR'26 — PRESENT", num:"04 / 08",
     title:"PriorAuthAI · <em>autonomous PA</em>",
     summary:"Autonomous multi-agent system handling prior authorization end-to-end for the 200K small U.S. practices enterprise tools can't reach. Plain TypeScript <strong>12-state machine</strong>, Claude Sonnet 4.6 orchestrator, Haiku 4.5 classifier, TinyFish for browser automation. Doctor's total time per PA: <strong>8 seconds</strong>.",
     stack:["TYPESCRIPT","CLAUDE","TINYFISH","SUPABASE","NEXT.JS"], cta:REPO,
     metrics:[{k:"// Doctor time", v:"<em>8</em>s", sub:"AGENT HANDLES THE REMAINING 3:52"},{k:"// Practices", v:"<em>200K</em>", sub:"STRUCTURALLY UNDERSERVED"}],
     visKind:"priorauth" },
-  { id:"REF_W03", date:"MAR'26 — PRESENT", num:"03 / 06",
+  { id:"REF_W05", date:"MAR'26 — PRESENT", num:"05 / 08",
     title:"Inclusive<em>Alert</em>",
     summary:"Full-stack <strong>accessibility-accommodation alert platform</strong> — real-time alerts when elevators go out, ramps are blocked, or accessible routes change, with <strong>geo-aware safe-space matching</strong> via PostGIS. Next.js on Vercel, FastAPI on Railway, Postgres + PostGIS, Redis cache, Alembic migrations.",
     stack:["NEXT.JS","FASTAPI","POSTGIS","RAILWAY","VERCEL","REDIS"], cta:"https://github.com/Myan17/InclusiveAlert",
     metrics:[{k:"// Full-stack", v:"<em>5</em>", sub:"VERCEL · RAILWAY · POSTGIS · REDIS · ALEMBIC"},{k:"// Commits", v:"<em>37</em>", sub:"DEPLOY-READY · DEMO SEED INCLUDED"}],
     visKind:"inclusive" },
-  { id:"REF_W04", date:"FEB'26 — MAR'26", num:"04 / 06",
+  { id:"REF_W06", date:"FEB'26 — MAR'26", num:"06 / 08",
     title:"ICU <em>Capacity</em> Forecasting",
     summary:"Containerized ML platform on <strong>AWS EC2, S3, Lambda</strong> with REST APIs + React dashboard for hospital capacity planning. Optimized API queries and concurrency. SARIMA, Prophet, and federated learning across 8 clients.",
     stack:["FASTAPI","AWS","REACT","DOCKER","PROPHET"], cta:REPO,
     metrics:[{k:"// P95 latency", v:"<em>14</em>ms <span style='font-size:0.35em; color:var(--muted); font-style:normal;'>↓ from 360ms</span>", sub:"26× FASTER FORECAST RETRIEVAL"},{k:"// Federated", v:"<em>8</em>", sub:"HOSPITAL CLIENTS · NON-IID"}],
     visKind:"icu" },
-  { id:"REF_W05", date:"JAN'26 — PRESENT", num:"05 / 06",
+  { id:"REF_W07", date:"JAN'26 — PRESENT", num:"07 / 08",
     title:"RL <em>Benchmarking</em>",
     summary:"OpenEnv-compatible Reinforcement Learning evaluation backend for email workflows. Async <strong>JSON-RPC MCP server</strong> with Pydantic validation runs 20+ scenarios. Deterministic grading, trace logging, integration tests across three benchmark tiers.",
     stack:["PYTHON","JSON-RPC","PYDANTIC","PYTORCH","OpenEnv"], cta:REPO,
     metrics:[{k:"// Mean return", v:"<em>0.967</em>", sub:"ACROSS BENCHMARK TIERS"},{k:"// Coverage", v:"<em>20</em>+", sub:"CLASSIFICATION · DRAFTING · WORKFLOW"}],
     visKind:"rl" },
-  { id:"REF_W06", date:"APR'26 — PRESENT", num:"06 / 06",
+  { id:"REF_W08", date:"APR'26 — PRESENT", num:"08 / 08",
     title:"Consistent-Hash <em>KV Store</em>",
     summary:"Distributed KV store in <strong>Go</strong> with consistent hashing — minimizes remapping during cluster changes. Containerized router and storage nodes with Docker. REST APIs for health, KV ops, ring inspection, node debugging.",
     stack:["GO","DOCKER","k6","REST"], cta:REPO,
@@ -875,23 +923,25 @@ const WORKS = [
 
 const PROJECTS = [
   { id:"P01", title:"Kernel Factory <span class='live-tag'>● LIVE</span>", role:"QuackHacks 2026 · Solo", desc:"Deterministic pipeline computing numerically-verified JAX/Pallas TPU kernels. VMEM-aware tile solver + LanceDB RAG + verification gate. Beats XLA on FFN-down (+5%) & RMSNorm (+3%). 92 tests, Cloud TPU v5e.", tags:["JAX","Pallas","TPU","RAG","MCP"], date:"MAY'26", repo:"https://github.com/Myan17/Kernel-Factory", live:"https://myan17.github.io/Kernel-Factory/#demo" },
-  { id:"P02", title:"PriorAuthAI", role:"Top 9 · Origin House O1", desc:"Multi-agent prior-auth for 200K small U.S. practices. 12-state TS orchestrator + Claude + TinyFish.", tags:["TS","Claude","TinyFish"], date:"APR'26", repo:REPO },
-  { id:"P03", title:"InclusiveAlert", role:"Solo · Deployed", desc:"Full-stack accessibility alert platform. Next.js + FastAPI + PostGIS for geo-matching. 37 commits.", tags:["Next.js","FastAPI","PostGIS","Vercel"], date:"MAR'26", repo:"https://github.com/Myan17/InclusiveAlert" },
-  { id:"P04", title:"ICU Capacity Forecasting", role:"Solo", desc:"FastAPI + AWS + React. P95 360ms → 14ms. SARIMA/Prophet/federated learning across 8 clients.", tags:["FastAPI","AWS","React"], date:"FEB'26", repo:REPO },
-  { id:"P05", title:"RL Benchmarking Platform", role:"Solo", desc:"OpenEnv-compatible RL eval backend, JSON-RPC MCP server. 0.967 mean return, 3 benchmark tiers.", tags:["Python","JSON-RPC","PyTorch"], date:"JAN'26", repo:REPO },
-  { id:"P06", title:"Consistent-Hash KV Store", role:"Solo", desc:"Go distributed KV store. k6 load tests: 20 VUs, 60K ops, sub-500ms P95.", tags:["Go","Docker","k6"], date:"APR'26", repo:REPO },
-  { id:"P07", title:"auto-apply", role:"Solo", desc:"GPT-4o Vision agent driving real Chromium via Playwright across Workday, Greenhouse, Lever, Ashby. Google Sheets-driven.", tags:["GPT-4o","Playwright","Python"], date:"MAR'26", repo:"https://github.com/Myan17/auto-apply" },
-  { id:"P08", title:"Ad Creative CTR Prediction", role:"INET 4061 · Final", desc:"Avazu CTR · 500K impressions → 1,191 creatives. XGBoost + RF + K-Means. ROC-AUC 0.662 (5-fold CV ± 0.040), Mann-Whitney p=0.027.", tags:["XGBoost","scikit-learn","K-Means"], date:"2025", repo:REPO },
-  { id:"P09", title:"Skunk-Game <span class='live-tag'>● LIVE</span>", role:"Solo · Deployed", desc:"Press-your-luck dice game with risk-budget mechanics. Vanilla JS, deployed via GitHub Pages.", tags:["JS","HTML","Probability"], date:"2025", repo:"https://github.com/Myan17/Skunk-Game", live:"https://myan17.github.io/Skunk-Game/" },
-  { id:"P10", title:"Sharpe_optimizer", role:"Solo · Quant", desc:"Portfolio Sharpe-ratio optimizer over multi-asset returns with tangency-portfolio solver.", tags:["Quant","Python","Portfolio"], date:"2025", repo:"https://github.com/Myan17/Sharpe_optimizer" },
-  { id:"P11", title:"Rolling Correlation·Covariance", role:"Solo · Quant", desc:"Rolling-window correlation and covariance estimators for multi-asset return series.", tags:["Quant","Pandas","Stats"], date:"2025", repo:"https://github.com/Myan17/Rolling_Correlation-Covariance" },
-  { id:"P12", title:"portfolio_analyzer", role:"Solo · Quant", desc:"Portfolio risk/return analyzer with drawdown, Sharpe, and exposure decomposition.", tags:["Quant","Pandas","NumPy"], date:"2025", repo:"https://github.com/Myan17/portfolio_analyzer" },
-  { id:"P13", title:"daily-returns-analyzer", role:"Solo · Quant", desc:"Daily-returns analyzer producing distribution stats, autocorrelation, and visualization.", tags:["Quant","Pandas","Plot"], date:"2025", repo:"https://github.com/Myan17/daily-returns-analyzer" },
-  { id:"P14", title:"quant-project-3", role:"Solo · Quant", desc:"Quant research project — strategy prototyping and analysis. See repo for spec.", tags:["Quant","Python"], date:"2025", repo:"https://github.com/Myan17/quant-project-3" },
-  { id:"P15", title:"Appointment-Scheduling-API", role:"Solo · Backend", desc:"REST API for appointment scheduling with conflict detection and time-slot management.", tags:["Backend","REST","API"], date:"2025", repo:"https://github.com/Myan17/Appointment-Scheduling-API" },
-  { id:"P16", title:"Multi-Agent Trace Analysis", role:"Research · UMN", desc:"Categorize 1,600+ traces across 7 frameworks × 14 failure modes. LLM-as-a-judge validation.", tags:["Python","FastAPI","LLM Eval"], date:"JAN'25", repo:REPO },
-  { id:"P17", title:"BETA Accelerator · AI Cohort", role:"Instructor", desc:"Conducted an AI cohort teaching non-technical founders to vibe-code production prototypes.", tags:["Curriculum","AI Tools"], date:"2026", repo:REPO },
-  { id:"P18", title:"Quant Lab", role:"Live in /lab", desc:"Monte Carlo option pricer, SMA backtest with drawdown, 2-asset efficient frontier — all interactive.", tags:["Black-Scholes","Backtest","Frontier"], date:"—", repo:"#lab", labTab:"quant" }
+  { id:"P02", title:"Interlock <span class='live-tag'>● LIVE</span>", role:"OpenAI Hackathon · Solo", desc:"Deterministic safety layer between agents and the tools they affect. Agent drafts a least-privilege policy, human confirms authority, a pure policy-as-code engine returns ALLOW/HALT/ESCALATE. 152 tests incl. a purity test. Azure Container Apps via GitHub OIDC.", tags:["Python","FastAPI","Next.js","Azure","Docker"], date:"JUL'26", repo:"https://github.com/Myan17/OpenAI-Hack", live:"https://interlock-demo.agreeablestone-318f5583.eastus.azurecontainerapps.io" },
+  { id:"P03", title:"ScaleGraph <span class='live-tag'>● LIVE</span>", role:"Solo · Deployed", desc:"Grounded knowledge-graph companion for the @Scale conference series. Extractive, cited answers with ▶ watch-from-MM:SS deep-links, exportable slides, and visible refusal. Hybrid retrieval lifts precision@1 57% → 79%. In-browser embeddings — no keys, no backend.", tags:["TypeScript","Vite","Transformers.js","RAG"], date:"JUN'26", repo:"https://github.com/Myan17/scalegraph", live:"https://myan17.github.io/scalegraph/" },
+  { id:"P04", title:"PriorAuthAI", role:"Top 9 · Origin House O1", desc:"Multi-agent prior-auth for 200K small U.S. practices. 12-state TS orchestrator + Claude + TinyFish.", tags:["TS","Claude","TinyFish"], date:"APR'26", repo:REPO },
+  { id:"P05", title:"InclusiveAlert", role:"Solo · Deployed", desc:"Full-stack accessibility alert platform. Next.js + FastAPI + PostGIS for geo-matching. 37 commits.", tags:["Next.js","FastAPI","PostGIS","Vercel"], date:"MAR'26", repo:"https://github.com/Myan17/InclusiveAlert" },
+  { id:"P06", title:"ICU Capacity Forecasting", role:"Solo", desc:"FastAPI + AWS + React. P95 360ms → 14ms. SARIMA/Prophet/federated learning across 8 clients.", tags:["FastAPI","AWS","React"], date:"FEB'26", repo:REPO },
+  { id:"P07", title:"RL Benchmarking Platform", role:"Solo", desc:"OpenEnv-compatible RL eval backend, JSON-RPC MCP server. 0.967 mean return, 3 benchmark tiers.", tags:["Python","JSON-RPC","PyTorch"], date:"JAN'26", repo:REPO },
+  { id:"P08", title:"Consistent-Hash KV Store", role:"Solo", desc:"Go distributed KV store. k6 load tests: 20 VUs, 60K ops, sub-500ms P95.", tags:["Go","Docker","k6"], date:"APR'26", repo:REPO },
+  { id:"P09", title:"auto-apply", role:"Solo", desc:"GPT-4o Vision agent driving real Chromium via Playwright across Workday, Greenhouse, Lever, Ashby. Google Sheets-driven.", tags:["GPT-4o","Playwright","Python"], date:"MAR'26", repo:"https://github.com/Myan17/auto-apply" },
+  { id:"P10", title:"Ad Creative CTR Prediction", role:"INET 4061 · Final", desc:"Avazu CTR · 500K impressions → 1,191 creatives. XGBoost + RF + K-Means. ROC-AUC 0.662 (5-fold CV ± 0.040), Mann-Whitney p=0.027.", tags:["XGBoost","scikit-learn","K-Means"], date:"2025", repo:REPO },
+  { id:"P11", title:"Skunk-Game <span class='live-tag'>● LIVE</span>", role:"Solo · Deployed", desc:"Press-your-luck dice game with risk-budget mechanics. Vanilla JS, deployed via GitHub Pages.", tags:["JS","HTML","Probability"], date:"2025", repo:"https://github.com/Myan17/Skunk-Game", live:"https://myan17.github.io/Skunk-Game/" },
+  { id:"P12", title:"Sharpe_optimizer", role:"Solo · Quant", desc:"Portfolio Sharpe-ratio optimizer over multi-asset returns with tangency-portfolio solver.", tags:["Quant","Python","Portfolio"], date:"2025", repo:"https://github.com/Myan17/Sharpe_optimizer" },
+  { id:"P13", title:"Rolling Correlation·Covariance", role:"Solo · Quant", desc:"Rolling-window correlation and covariance estimators for multi-asset return series.", tags:["Quant","Pandas","Stats"], date:"2025", repo:"https://github.com/Myan17/Rolling_Correlation-Covariance" },
+  { id:"P14", title:"portfolio_analyzer", role:"Solo · Quant", desc:"Portfolio risk/return analyzer with drawdown, Sharpe, and exposure decomposition.", tags:["Quant","Pandas","NumPy"], date:"2025", repo:"https://github.com/Myan17/portfolio_analyzer" },
+  { id:"P15", title:"daily-returns-analyzer", role:"Solo · Quant", desc:"Daily-returns analyzer producing distribution stats, autocorrelation, and visualization.", tags:["Quant","Pandas","Plot"], date:"2025", repo:"https://github.com/Myan17/daily-returns-analyzer" },
+  { id:"P16", title:"quant-project-3", role:"Solo · Quant", desc:"Quant research project — strategy prototyping and analysis. See repo for spec.", tags:["Quant","Python"], date:"2025", repo:"https://github.com/Myan17/quant-project-3" },
+  { id:"P17", title:"Appointment-Scheduling-API", role:"Solo · Backend", desc:"REST API for appointment scheduling with conflict detection and time-slot management.", tags:["Backend","REST","API"], date:"2025", repo:"https://github.com/Myan17/Appointment-Scheduling-API" },
+  { id:"P18", title:"Multi-Agent Trace Analysis", role:"Research · UMN", desc:"Categorize 1,600+ traces across 7 frameworks × 14 failure modes. LLM-as-a-judge validation.", tags:["Python","FastAPI","LLM Eval"], date:"JAN'25", repo:REPO },
+  { id:"P19", title:"BETA Accelerator · AI Cohort", role:"Instructor", desc:"Conducted an AI cohort teaching non-technical founders to vibe-code production prototypes.", tags:["Curriculum","AI Tools"], date:"2026", repo:REPO },
+  { id:"P20", title:"Quant Lab", role:"Live in /lab", desc:"Monte Carlo option pricer, SMA backtest with drawdown, 2-asset efficient frontier — all interactive.", tags:["Black-Scholes","Backtest","Frontier"], date:"—", repo:"#lab", labTab:"quant" }
 ];
 
 const EVENTS = [
@@ -913,6 +963,8 @@ function renderWorkVis(kind) {
   if (kind === 'icu') return `<svg viewBox="0 0 320 120" style="width:100%;height:auto;"><path d="M10,40 Q60,15 110,30 T210,45 T310,25" fill="none" stroke="#ff5ea3" stroke-width="1.5" stroke-dasharray="3 3"/><path d="M10,60 Q60,45 110,55 T210,60 T310,50" fill="none" stroke="#d4ff3a" stroke-width="2"/><path d="M10,90 Q60,80 110,85 T210,82 T310,86" fill="none" stroke="#5ee3ff" stroke-width="1.5"/><circle cx="310" cy="25" r="3" fill="#ff5ea3"/><circle cx="310" cy="50" r="3" fill="#d4ff3a"/><circle cx="310" cy="86" r="3" fill="#5ee3ff"/><text x="10" y="115" font-family="JetBrains Mono" font-size="9" fill="#6c6e78" letter-spacing="2">FORECAST · 8 CLIENTS · 30D</text></svg>`;
   if (kind === 'rl') return `<svg viewBox="0 0 320 120" style="width:100%;height:auto;"><defs><linearGradient id="rlbar"><stop offset="0%" stop-color="#d4ff3a"/><stop offset="100%" stop-color="#5ee3ff"/></linearGradient></defs><rect x="0" y="80" width="32" height="32" fill="rgba(212,255,58,0.3)"/><rect x="36" y="60" width="32" height="52" fill="rgba(212,255,58,0.45)"/><rect x="72" y="40" width="32" height="72" fill="rgba(212,255,58,0.6)"/><rect x="108" y="30" width="32" height="82" fill="rgba(212,255,58,0.7)"/><rect x="144" y="20" width="32" height="92" fill="rgba(212,255,58,0.8)"/><rect x="180" y="14" width="32" height="98" fill="rgba(212,255,58,0.88)"/><rect x="216" y="10" width="32" height="102" fill="rgba(212,255,58,0.95)"/><rect x="252" y="6" width="32" height="106" fill="url(#rlbar)"/><rect x="288" y="2" width="32" height="110" fill="url(#rlbar)"/><text x="160" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#6c6e78" letter-spacing="2">MEAN RETURN · TIER 3</text></svg>`;
   if (kind === 'ring') return `<svg viewBox="0 0 320 140" style="width:100%;height:auto;"><circle cx="160" cy="70" r="50" fill="none" stroke="rgba(212,255,58,0.3)" stroke-width="1.5"/><circle cx="160" cy="20" r="7" fill="#0a0a0e" stroke="#d4ff3a" stroke-width="2"/><circle cx="210" cy="70" r="7" fill="#0a0a0e" stroke="#ff5ea3" stroke-width="2"/><circle cx="160" cy="120" r="7" fill="#0a0a0e" stroke="#ff8c42" stroke-width="2"/><circle cx="110" cy="70" r="7" fill="#0a0a0e" stroke="#5ee3ff" stroke-width="2"/><g fill="#d4ff3a"><circle cx="175" cy="22" r="2"/><circle cx="190" cy="35" r="2"/><circle cx="200" cy="50" r="2"/></g><g fill="#ff5ea3"><circle cx="208" cy="88" r="2"/><circle cx="195" cy="108" r="2"/></g><g fill="#ff8c42"><circle cx="142" cy="118" r="2"/><circle cx="125" cy="108" r="2"/></g><g fill="#5ee3ff"><circle cx="113" cy="55" r="2"/><circle cx="125" cy="38" r="2"/></g><text x="160" y="138" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#6c6e78" letter-spacing="2">HASH RING · 4 NODES</text></svg>`;
+  if (kind === 'interlock') return `<svg viewBox="0 0 320 140" style="width:100%;height:auto;"><g font-family="JetBrains Mono" font-size="9"><rect x="4" y="52" width="56" height="24" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" rx="4"/><text x="32" y="67" text-anchor="middle" fill="#a78bfa">AGENT</text><line x1="60" y1="64" x2="78" y2="64" stroke="#383942" stroke-dasharray="2 2"/><rect x="78" y="52" width="56" height="24" fill="rgba(94,227,255,0.15)" stroke="#5ee3ff" rx="4"/><text x="106" y="67" text-anchor="middle" fill="#5ee3ff">HUMAN</text><line x1="134" y1="64" x2="152" y2="64" stroke="#383942" stroke-dasharray="2 2"/><rect x="152" y="46" width="60" height="36" fill="rgba(212,255,58,0.14)" stroke="#d4ff3a" stroke-width="1.5" rx="5"/><text x="182" y="62" text-anchor="middle" fill="#d4ff3a">ENGINE</text><text x="182" y="74" text-anchor="middle" fill="#6c6e78" font-size="7.5">PURE</text><line x1="212" y1="56" x2="240" y2="24" stroke="#383942" stroke-dasharray="2 2"/><line x1="212" y1="64" x2="240" y2="64" stroke="#383942" stroke-dasharray="2 2"/><line x1="212" y1="72" x2="240" y2="104" stroke="#383942" stroke-dasharray="2 2"/><rect x="240" y="12" width="74" height="24" fill="rgba(212,255,58,0.22)" stroke="#d4ff3a" rx="4"/><text x="277" y="27" text-anchor="middle" fill="#d4ff3a">ALLOW</text><rect x="240" y="52" width="74" height="24" fill="rgba(255,94,163,0.2)" stroke="#ff5ea3" rx="4"/><text x="277" y="67" text-anchor="middle" fill="#ff5ea3">HALT</text><rect x="240" y="92" width="74" height="24" fill="rgba(255,140,66,0.16)" stroke="#ff8c42" rx="4"/><text x="277" y="107" text-anchor="middle" fill="#ff8c42">ESCALATE</text><text x="120" y="134" text-anchor="middle" fill="#6c6e78" letter-spacing="1.5">POLICY-AS-CODE · NO LLM IN THE VERDICT</text></g></svg>`;
+  if (kind === 'scalegraph') return `<svg viewBox="0 0 320 140" style="width:100%;height:auto;"><g font-family="JetBrains Mono" font-size="9"><line x1="70" y1="40" x2="130" y2="66" stroke="rgba(94,227,255,0.35)"/><line x1="70" y1="98" x2="130" y2="66" stroke="rgba(94,227,255,0.35)"/><line x1="130" y1="66" x2="196" y2="34" stroke="rgba(94,227,255,0.35)"/><line x1="130" y1="66" x2="196" y2="66" stroke="rgba(94,227,255,0.35)"/><line x1="130" y1="66" x2="196" y2="100" stroke="rgba(94,227,255,0.35)"/><line x1="196" y1="34" x2="196" y2="66" stroke="rgba(94,227,255,0.5)" stroke-dasharray="3 3"/><line x1="196" y1="66" x2="196" y2="100" stroke="rgba(94,227,255,0.5)" stroke-dasharray="3 3"/><circle cx="70" cy="40" r="5" fill="#ff8c42"/><circle cx="70" cy="98" r="5" fill="#ff8c42"/><circle cx="130" cy="66" r="8" fill="#0a0a0e" stroke="#d4ff3a" stroke-width="2"/><circle cx="196" cy="34" r="5" fill="#5ee3ff"/><circle cx="196" cy="66" r="5" fill="#5ee3ff"/><circle cx="196" cy="100" r="5" fill="#5ee3ff"/><text x="70" y="26" text-anchor="middle" fill="#ff8c42" font-size="7.5">SPEAKER</text><text x="130" y="88" text-anchor="middle" fill="#d4ff3a" font-size="7.5">THEME</text><text x="230" y="37" fill="#6c6e78" font-size="7.5">'24</text><text x="230" y="69" fill="#6c6e78" font-size="7.5">'25</text><text x="230" y="103" fill="#6c6e78" font-size="7.5">'26</text><text x="160" y="128" text-anchor="middle" fill="#6c6e78" letter-spacing="1.5">EXTRACTIVE · CITED · ▶ WATCH-FROM-MM:SS</text></g></svg>`;
   if (kind === 'kernel') return `<svg viewBox="0 0 320 140" style="width:100%;height:auto;"><g font-family="JetBrains Mono" font-size="9"><rect x="6" y="24" width="58" height="24" fill="rgba(212,255,58,0.18)" stroke="#d4ff3a" rx="4"/><text x="35" y="39" text-anchor="middle" fill="#d4ff3a">SOLVE</text><line x1="64" y1="36" x2="84" y2="36" stroke="#383942" stroke-dasharray="2 2"/><rect x="84" y="24" width="50" height="24" fill="rgba(94,227,255,0.15)" stroke="#5ee3ff" rx="4"/><text x="109" y="39" text-anchor="middle" fill="#5ee3ff">RAG</text><line x1="134" y1="36" x2="154" y2="36" stroke="#383942" stroke-dasharray="2 2"/><rect x="154" y="24" width="74" height="24" fill="rgba(255,140,66,0.15)" stroke="#ff8c42" rx="4"/><text x="191" y="39" text-anchor="middle" fill="#ff8c42">ASSEMBLE</text><line x1="228" y1="36" x2="248" y2="36" stroke="#383942" stroke-dasharray="2 2"/><rect x="248" y="24" width="66" height="24" fill="rgba(255,94,163,0.18)" stroke="#ff5ea3" rx="4"/><text x="281" y="39" text-anchor="middle" fill="#ff5ea3">VERIFY</text><rect x="80" y="72" width="160" height="30" fill="rgba(212,255,58,0.10)" stroke="#d4ff3a" stroke-width="1.5" rx="6"/><text x="160" y="91" text-anchor="middle" fill="#d4ff3a" font-size="10.5">✓ jnp.allclose · max_err 0.00</text><text x="160" y="124" text-anchor="middle" fill="#6c6e78" letter-spacing="1.5">VMEM-AWARE TILES · NO FREE-FORM CODEGEN</text></g></svg>`;
   return '';
 }
@@ -953,7 +1005,7 @@ function renderWorkVis(kind) {
     { t: '<span class="ok">✓</span> network.online · <span class="key">Redmond, WA</span>', d: 80 },
     { t: '<span class="ok">✓</span> mounting /dev/portfolio …', d: 100 },
     { t: '<span class="ok">✓</span> stack.ready · ts · go · python · fastapi · postgis · xgboost', d: 80 },
-    { t: '<span class="ok">✓</span> projects.indexed · <span class="key">17</span> · quant.repos · <span class="key">7</span>', d: 80 },
+    { t: '<span class="ok">✓</span> projects.indexed · <span class="key">20</span> · quant.repos · <span class="key">7</span>', d: 80 },
     { t: '<span class="ok">✓</span> quant.lab.online · mc · backtest · frontier', d: 70 },
     { t: '$ ready. <span class="ok">●</span> entering interactive mode<span class="boot-caret"></span>', d: 220 },
   ];
